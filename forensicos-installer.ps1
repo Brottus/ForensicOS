@@ -2195,11 +2195,14 @@ if ($bundleConfig.NetworkFailed) {
 
 # Build menu: remote bundles (if any) + always a local file option
 $bundleMenuItems = @()
+$localFileMenuLabel = "${localFileLabel} [required package managers: depends on selected .ubundle file]"
 if ($bundleConfig.Bundles.Count -gt 0) {
-    $bundleMenuItems = @($bundleConfig.Bundles | ForEach-Object { $_.Description })
-
-    Write-Host 'Bundle requirement notes:' -ForegroundColor Cyan
     foreach ($bundle in $bundleConfig.Bundles) {
+        $description = "$($bundle.Description)"
+        if ([string]::IsNullOrWhiteSpace($description)) {
+            $description = 'Unnamed bundle'
+        }
+
         $requiredManagers = @()
         if ($null -ne $bundle.RequiredManagers) {
             $requiredManagers = @($bundle.RequiredManagers | ForEach-Object { "$_".Trim() } | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
@@ -2212,11 +2215,10 @@ if ($bundleConfig.Bundles.Count -gt 0) {
             'not specified'
         }
 
-        Write-Host " - $($bundle.Description): requires $requirementsNote" -ForegroundColor Yellow
+        $bundleMenuItems += "$description [required package managers: $requirementsNote]"
     }
-    Write-Host " - ${localFileLabel}: requirements depend on the selected .ubundle file" -ForegroundColor Yellow
 }
-$bundleMenuItems += $localFileLabel
+$bundleMenuItems += $localFileMenuLabel
 
 Write-Host "Select a package bundle to install:" -ForegroundColor Cyan
 $bundleIndex = Show-Menu -MenuItems $bundleMenuItems -ReturnIndex
@@ -2225,7 +2227,7 @@ if ($null -eq $bundleIndex) {
     Write-Host "Bundle selection cancelled. No packages from bundle will be installed." -ForegroundColor Yellow
     Write-InstallerLog -Message 'User cancelled bundle selection.' -Level 'WARN'
 }
-elseif ($bundleMenuItems[$bundleIndex] -eq $localFileLabel) {
+elseif ($bundleIndex -ge $bundleConfig.Bundles.Count) {
     try {
         $selectedBundlePath = Invoke-CustomPathSetup -PathType Leaf
         Write-InstallerLog -Message "User provided local bundle file: '$selectedBundlePath'"
@@ -2246,15 +2248,6 @@ else {
     Write-Host "Selected bundle: $($selectedBundleEntry.Description)" -ForegroundColor Green
     Write-InstallerLog -Message "User selected bundle: '$($selectedBundleEntry.Description)' -> '$selectedBundlePath'"
 
-    if ($selectedBundleRequiredManagers.Count -gt 0) {
-        $requiredManagersText = $selectedBundleRequiredManagers -join ', '
-        Write-Host "Note: This bundle requires package managers: $requiredManagersText" -ForegroundColor Yellow
-        Write-InstallerLog -Message "Bundle requires package managers: $requiredManagersText"
-    }
-    else {
-        Write-Host 'Note: This bundle does not specify required package managers.' -ForegroundColor Yellow
-        Write-InstallerLog -Message 'Bundle required package managers not specified.' -Level 'WARN'
-    }
 }
 
 # --- Step 2: Additional options ---
