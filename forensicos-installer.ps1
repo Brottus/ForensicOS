@@ -1130,6 +1130,12 @@ function Invoke-PackageBundleInstall {
 
             if ($null -ne $package.InstallationOptions.CustomInstallLocation) {
                 $customInstallLocation = "$($package.InstallationOptions.CustomInstallLocation)"
+                if (-not [string]::IsNullOrWhiteSpace($customInstallLocation)) {
+                    $expandedCustomInstallLocation = [System.Environment]::ExpandEnvironmentVariables($customInstallLocation)
+                    if (-not [string]::IsNullOrWhiteSpace($expandedCustomInstallLocation)) {
+                        $customInstallLocation = $expandedCustomInstallLocation
+                    }
+                }
                 if ([string]::IsNullOrWhiteSpace($customInstallLocation)) { $customInstallLocation = $null }
             }
         }
