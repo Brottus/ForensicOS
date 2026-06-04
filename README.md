@@ -75,13 +75,13 @@ ForensicOS should be installed on a dedicated lab workstation or virtual machine
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force
-$p = "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1"; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Brottus/ForensicOS/main/dummy-package-installer.ps1" -OutFile $p; Unblock-File $p; & $p
+$p = "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1"; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Brottus/ForensicOS/main/forensicos-installer.ps1" -OutFile $p; Unblock-File $p; & $p
 ```
 
 - Manual install:
 
 ```powershell
-(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Brottus/ForensicOS/main/dummy-package-installer.ps1', "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1")
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Brottus/ForensicOS/main/forensicos-installer.ps1', "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1")
 Unblock-File "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1"
 Set-ExecutionPolicy Bypass -Scope Process -Force
 & "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1"
