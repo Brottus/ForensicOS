@@ -567,6 +567,42 @@ function Write-InstallerExecutionSummary {
     }
 }
 
+function ConvertTo-InstallerObjectArray {
+    param(
+        $Value
+    )
+
+    if ($null -eq $Value) {
+        return @()
+    }
+
+    if ($Value -is [System.Array]) {
+        return @($Value)
+    }
+
+    return @($Value)
+}
+
+function Get-InstallerBundlesFromConfigObject {
+    param(
+        $ConfigObject
+    )
+
+    if ($null -eq $ConfigObject) {
+        return @()
+    }
+
+    $bundlesProperty = $null
+    foreach ($property in $ConfigObject.PSObject.Properties) {
+        if ($property.Name -ieq 'bundles') {
+            $bundlesProperty = $property.Value
+            break
+        }
+    }
+
+    return @(ConvertTo-InstallerObjectArray -Value $bundlesProperty)
+}
+
 function Get-BundleConfig {
     # Fetches and parses the remote bundle config.
     # Returns a hashtable: { Bundles = @(...); NetworkFailed = $true/$false }
@@ -580,7 +616,7 @@ function Get-BundleConfig {
         Write-Host "Fetching bundle configuration..." -ForegroundColor Cyan
         $configContent = Invoke-WebRequest -Uri $ConfigUri -UseBasicParsing -ErrorAction Stop
         $configObject = $configContent.Content | ConvertFrom-Json -ErrorAction Stop
-        $bundles = if ($null -ne $configObject -and $null -ne $configObject.bundles) { @($configObject.bundles) } else { @() }
+        $bundles = @(Get-InstallerBundlesFromConfigObject -ConfigObject $configObject)
         return @{ Bundles = $bundles; NetworkFailed = $false }
     }
     catch {
