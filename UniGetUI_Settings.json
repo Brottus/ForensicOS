@@ -1,0 +1,12 @@
+{
+  "AutomaticallyUpdatePackages": "",
+  "DisableInstantSearch.json": "{\r\n  \u0022Discover\u0022: false,\r\n  \u0022Updates\u0022: false,\r\n  \u0022Installed\u0022: false,\r\n  \u0022Bundles\u0022: false\r\n}",
+  "DisableTelemetry": "",
+  "DoCacheAdminRights": "",
+  "PackageListViewMode.json": "{\r\n  \u0022Discover\u0022: 0,\r\n  \u0022Updates\u0022: 0,\r\n  \u0022Installed\u0022: 0,\r\n  \u0022Bundles\u0022: 0\r\n}",
+  "PreferredTheme": "auto",
+  "ShownTelemetryBanner": "",
+  "SidepanelWidths.json": "{\r\n  \u0022Discover\u0022: 250,\r\n  \u0022Updates\u0022: 250,\r\n  \u0022Installed\u0022: 250,\r\n  \u0022Bundles\u0022: 250,\r\n  \u0022SoftwarePages.DiscoverSoftwarePage\u0022: 220,\r\n  \u0022SoftwarePages.SoftwareUpdatesPage\u0022: 220,\r\n  \u0022SoftwarePages.InstalledPackagesPage\u0022: 220,\r\n  \u0022SoftwarePages.PackageBundlesPage\u0022: 220\r\n}",
+  "WindowGeometry": "v2,122,27,1457,762,0",
+  "WinGetCliToolPreference": "winget"
+}

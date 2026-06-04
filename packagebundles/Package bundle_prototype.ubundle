@@ -1,0 +1,111 @@
+{
+  "export_version": 3,
+  "packages": [
+    {
+      "Id": "Microsoft.Sysinternals.Suite",
+      "Name": "Sysinternals Suite",
+      "Version": "2026-05-07",
+      "Source": "winget",
+      "ManagerName": "winget",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true,
+        "CustomInstallLocation": "%ForensicOSToolsBasePath%\\sysinternals"
+      }
+    },
+    {
+      "Id": "PSWindowsUpdate",
+      "Name": "PSWindowsUpdate",
+      "Version": "2.2.1.5",
+      "Source": "PSGallery",
+      "ManagerName": "winps"
+    },
+    {
+      "Id": "PeStudio",
+      "Name": "PeStudio",
+      "Version": "9.61.0",
+      "Source": "community",
+      "ManagerName": "chocolatey"
+    },
+    {
+      "Id": "arsenalimagemounter",
+      "Name": "Arsenalimagemounter",
+      "Version": "3.12.331",
+      "Source": "community",
+      "ManagerName": "chocolatey",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true
+      }
+    },
+    {
+      "Id": "cyberchef",
+      "Name": "Cyberchef",
+      "Version": "11.0.0",
+      "Source": "community",
+      "ManagerName": "chocolatey",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true
+      }
+    },
+    {
+      "Id": "exiftool",
+      "Name": "Exiftool",
+      "Version": "13.59",
+      "Source": "main",
+      "ManagerName": "scoop"
+    },
+    {
+      "Id": "hindsight",
+      "Name": "Hindsight",
+      "Version": "2026.1.0",
+      "Source": "community",
+      "ManagerName": "chocolatey",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true
+      }
+    },
+    {
+      "Id": "nirlauncher",
+      "Name": "Nirlauncher",
+      "Version": "1.30.5",
+      "Source": "community",
+      "ManagerName": "chocolatey"
+    },
+    {
+      "Id": "obsidianforensics.HindsightGUI",
+      "Name": "Hindsight",
+      "Version": "2026.04",
+      "Source": "winget",
+      "ManagerName": "winget",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true,
+        "CustomInstallLocation": "%ForensicOSToolsBasePath%\\Browser\\obsidianforensics.HindsightGUI"
+      }
+    },
+    {
+      "Id": "processhacker.portable",
+      "Name": "Processhacker",
+      "Version": "2.39",
+      "Source": "community",
+      "ManagerName": "chocolatey"
+    },
+    {
+      "Id": "pyinstaller-gui",
+      "Name": "Pyinstaller Gui",
+      "Version": "1.0.4",
+      "Source": "pip",
+      "ManagerName": "pip"
+    },
+    {
+      "Id": "vscode",
+      "Name": "Vscode",
+      "Version": "1.121.0",
+      "Source": "extras",
+      "ManagerName": "scoop",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true
+      }
+    }
+  ],
+  "incompatible_packages_info": "Incompatible packages cannot be installed from UniGetUI, either because they came from a local source (for example Local PC) or because the package manager was unavailable. Nevertheless, they have been listed here for logging purposes.",
+  "incompatible_packages": []
+}
