@@ -1,0 +1,14 @@
+{
+  "bundles": [
+    {
+      "Description": "ForensicOS Prototype Bundle - Complete forensic tools for digital investigation and incident response",
+      "BundleUrl": "https://raw.githubusercontent.com/Brottus/ForensicOS/refs/heads/main/packagebundles/Package%20bundle_prototype.ubundle",
+      "RequiredManagers": [
+        "winget",
+        "chocolatey",
+        "scoop",
+        "pip"
+      ]
+    }
+  ]
+}
