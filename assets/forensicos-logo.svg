@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="120" viewBox="0 0 680 120" role="img" aria-label="ForensicOS">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1f2a"/>
+      <stop offset="100%" stop-color="#12384b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#15b9a6"/>
+      <stop offset="100%" stop-color="#7ce6d8"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="680" height="120" rx="14" fill="url(#bg)"/>
+
+  <g transform="translate(26,20)">
+    <path d="M34 0 L68 14 L68 44 C68 62 55 77 34 82 C13 77 0 62 0 44 L0 14 Z" fill="#0e2b3a" stroke="url(#accent)" stroke-width="3"/>
+    <circle cx="34" cy="36" r="13" fill="none" stroke="#7ce6d8" stroke-width="4"/>
+    <line x1="44" y1="46" x2="57" y2="59" stroke="#7ce6d8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <text x="126" y="50" font-family="Segoe UI, Tahoma, sans-serif" font-size="34" font-weight="700" fill="#eafcff">ForensicOS</text>
+  <text x="126" y="81" font-family="Segoe UI, Tahoma, sans-serif" font-size="18" fill="#9cd7d0">Portable DFIR workstation bootstrap and package bundles</text>
+</svg>
