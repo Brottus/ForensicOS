@@ -74,7 +74,7 @@ ForensicOS should be installed on a dedicated lab workstation or virtual machine
 - Quick install (2 commands):
 
 ```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force
+Set-ExecutionPolicy Unrestricted -Force
 $p = "$([Environment]::GetFolderPath('Desktop'))\forensicos-installer.ps1"; Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Brottus/ForensicOS/main/forensicos-installer.ps1" -OutFile $p; Unblock-File $p; & $p
 ```
 

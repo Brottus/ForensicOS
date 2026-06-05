@@ -9,7 +9,9 @@
       "ManagerName": "winget",
       "InstallationOptions": {
         "OverridesNextLevelOpts": true,
-        "CustomInstallLocation": "%ForensicOSToolsBasePath%\\sysinternals"
+        "CustomInstallLocation": "C:\\tools\\sysinternals",
+        "PostInstallCommand": "powershell -Command \u0022Add-WingetInstallPathToPath -PackageName \u0027Microsoft.Sysinternals.Suite\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-WingetInstallPathFromPath -PackageName \u0027Microsoft.Sysinternals.Suite\u0027\u0022"
       }
     },
     {
@@ -24,7 +26,12 @@
       "Name": "PeStudio",
       "Version": "9.61.0",
       "Source": "community",
-      "ManagerName": "chocolatey"
+      "ManagerName": "chocolatey",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ChocolateyPackageToolsLink -PackageName \u0027PeStudio\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ChocolateyPackageToolsLink -PackageName \u0027PeStudio\u0027\u0022"
+      }
     },
     {
       "Id": "arsenalimagemounter",
@@ -33,7 +40,9 @@
       "Source": "community",
       "ManagerName": "chocolatey",
       "InstallationOptions": {
-        "OverridesNextLevelOpts": true
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ChocolateyPackageToolsLink -PackageName \u0027arsenalimagemounter\u0027 -Category \u0027Acquisition\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ChocolateyPackageToolsLink -PackageName \u0027arsenalimagemounter\u0027\u0022"
       }
     },
     {
@@ -43,7 +52,9 @@
       "Source": "community",
       "ManagerName": "chocolatey",
       "InstallationOptions": {
-        "OverridesNextLevelOpts": true
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ChocolateyPackageToolsLink -PackageName \u0027cyberchef\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ChocolateyPackageToolsLink -PackageName \u0027cyberchef\u0027\u0022"
       }
     },
     {
@@ -51,7 +62,12 @@
       "Name": "Exiftool",
       "Version": "13.59",
       "Source": "main",
-      "ManagerName": "scoop"
+      "ManagerName": "scoop",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ScoopPackageToolsLink -PackageName \u0027exiftool\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ScoopPackageToolsLink -PackageName \u0027exiftool\u0027\u0022"
+      }
     },
     {
       "Id": "hindsight",
@@ -60,7 +76,9 @@
       "Source": "community",
       "ManagerName": "chocolatey",
       "InstallationOptions": {
-        "OverridesNextLevelOpts": true
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ChocolateyPackageToolsLink -PackageName \u0027hindsight\u0027 -Category \u0027Browser\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ChocolateyPackageToolsLink -PackageName \u0027hindsight\u0027\u0022"
       }
     },
     {
@@ -68,7 +86,12 @@
       "Name": "Nirlauncher",
       "Version": "1.30.5",
       "Source": "community",
-      "ManagerName": "chocolatey"
+      "ManagerName": "chocolatey",
+      "InstallationOptions": {
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ChocolateyPackageToolsLink -PackageName \u0027nirlauncher\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ChocolateyPackageToolsLink -PackageName \u0027nirlauncher\u0027\u0022"
+      }
     },
     {
       "Id": "obsidianforensics.HindsightGUI",
@@ -78,15 +101,10 @@
       "ManagerName": "winget",
       "InstallationOptions": {
         "OverridesNextLevelOpts": true,
-        "CustomInstallLocation": "%ForensicOSToolsBasePath%\\Browser\\obsidianforensics.HindsightGUI"
+        "CustomInstallLocation": "C:\\tools\\Browser\\obsidianforensics.HindsightGUI",
+        "PostInstallCommand": "powershell -Command \u0022Add-WingetInstallPathToPath -PackageName \u0027obsidianforensics.HindsightGUI\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-WingetInstallPathFromPath -PackageName \u0027obsidianforensics.HindsightGUI\u0027\u0022"
       }
-    },
-    {
-      "Id": "processhacker.portable",
-      "Name": "Processhacker",
-      "Version": "2.39",
-      "Source": "community",
-      "ManagerName": "chocolatey"
     },
     {
       "Id": "pyinstaller-gui",
@@ -102,7 +120,9 @@
       "Source": "extras",
       "ManagerName": "scoop",
       "InstallationOptions": {
-        "OverridesNextLevelOpts": true
+        "OverridesNextLevelOpts": true,
+        "PostInstallCommand": "powershell -Command \u0022New-ScoopPackageToolsLink -PackageName \u0027vscode\u0027\u0022",
+        "PostUninstallCommand": "powershell -Command \u0022Remove-ScoopPackageToolsLink -PackageName \u0027vscode\u0027\u0022"
       }
     }
   ],

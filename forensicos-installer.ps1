@@ -1131,6 +1131,29 @@ function Invoke-PackageBundleInstall {
             if ($null -ne $package.InstallationOptions.CustomInstallLocation) {
                 $customInstallLocation = "$($package.InstallationOptions.CustomInstallLocation)"
                 if (-not [string]::IsNullOrWhiteSpace($customInstallLocation)) {
+                    if ($customInstallLocation -imatch '^c:\\tools(\\|$)') {
+                        $resolvedToolsBasePath = $env:ForensicOSToolsBasePath
+                        if ([string]::IsNullOrWhiteSpace($resolvedToolsBasePath)) {
+                            $resolvedToolsBasePath = $InstallBasePath
+                        }
+
+                        if (-not [string]::IsNullOrWhiteSpace($resolvedToolsBasePath)) {
+                            $locationSuffix = ''
+                            if ($customInstallLocation.Length -gt 8) {
+                                $locationSuffix = $customInstallLocation.Substring(8).TrimStart('\\')
+                            }
+
+                            if ([string]::IsNullOrWhiteSpace($locationSuffix)) {
+                                $customInstallLocation = $resolvedToolsBasePath
+                            }
+                            else {
+                                $customInstallLocation = Join-Path -Path $resolvedToolsBasePath -ChildPath $locationSuffix
+                            }
+
+                            Write-InstallerLog -Message "Mapped bundle CustomInstallLocation prefix 'C:\tools' to '$resolvedToolsBasePath' for package '$packageId'."
+                        }
+                    }
+
                     $expandedCustomInstallLocation = [System.Environment]::ExpandEnvironmentVariables($customInstallLocation)
                     if (-not [string]::IsNullOrWhiteSpace($expandedCustomInstallLocation)) {
                         $customInstallLocation = $expandedCustomInstallLocation
