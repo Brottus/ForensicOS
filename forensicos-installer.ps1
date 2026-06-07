@@ -1700,11 +1700,35 @@ function Invoke-ChocolateyInstall {
     )
 
     $chocoInstallPath = Join-Path -Path $InstallBasePath -ChildPath 'chocolatey'
+    $chocoToolsLocation = [System.IO.Path]::GetFullPath($InstallBasePath).TrimEnd('\\')
 
     # Set install location before running the installer so Chocolatey lands in the tools folder.
     $env:ChocolateyInstall = $chocoInstallPath
+    $env:ChocolateyToolsLocation = $chocoToolsLocation
     Write-Host "Setting Chocolatey install path to: $chocoInstallPath" -ForegroundColor Cyan
     Write-InstallerLog -Message "Setting ChocolateyInstall env var to $chocoInstallPath"
+    Write-Host "Setting Chocolatey tools location to: $chocoToolsLocation" -ForegroundColor Cyan
+    Write-InstallerLog -Message "Setting ChocolateyToolsLocation env var to $chocoToolsLocation"
+
+    # Chocolatey tries to configure tab completion in the current user profile.
+    # Create profile path/file up front to avoid warning noise on fresh systems.
+    try {
+        $profilePath = $PROFILE
+        $profileDir = Split-Path -Path $profilePath -Parent
+
+        if (-not (Test-Path -Path $profileDir -PathType Container)) {
+            New-Item -Path $profileDir -ItemType Directory -Force | Out-Null
+            Write-InstallerLog -Message "Created PowerShell profile directory for Chocolatey: $profileDir"
+        }
+
+        if (-not (Test-Path -Path $profilePath -PathType Leaf)) {
+            New-Item -Path $profilePath -ItemType File -Force | Out-Null
+            Write-InstallerLog -Message "Created PowerShell profile file for Chocolatey: $profilePath"
+        }
+    }
+    catch {
+        Write-InstallerLog -Message "Failed to prepare PowerShell profile before Chocolatey install: $($_.Exception.Message)" -Level 'WARN'
+    }
 
     Write-Host 'Installing Chocolatey...' -ForegroundColor Cyan
     Write-InstallerLog -Message 'Running Chocolatey installer'
@@ -1723,6 +1747,24 @@ function Invoke-ChocolateyInstall {
         }
         else {
             Write-InstallerLog -Message "ChocolateyInstall machine env var already set to expected value: $machineChocolateyInstall"
+        }
+
+        $machineChocolateyToolsLocation = [Environment]::GetEnvironmentVariable('ChocolateyToolsLocation', 'Machine')
+        if ([string]::IsNullOrWhiteSpace($machineChocolateyToolsLocation) -or $machineChocolateyToolsLocation -ne $chocoToolsLocation) {
+            [Environment]::SetEnvironmentVariable('ChocolateyToolsLocation', $chocoToolsLocation, 'Machine')
+            Write-InstallerLog -Message "ChocolateyToolsLocation machine env var was missing or different; set to $chocoToolsLocation"
+        }
+        else {
+            Write-InstallerLog -Message "ChocolateyToolsLocation machine env var already set to expected value: $machineChocolateyToolsLocation"
+        }
+
+        $userChocolateyToolsLocation = [Environment]::GetEnvironmentVariable('ChocolateyToolsLocation', 'User')
+        if ([string]::IsNullOrWhiteSpace($userChocolateyToolsLocation) -or $userChocolateyToolsLocation -ne $chocoToolsLocation) {
+            [Environment]::SetEnvironmentVariable('ChocolateyToolsLocation', $chocoToolsLocation, 'User')
+            Write-InstallerLog -Message "ChocolateyToolsLocation user env var was missing or different; set to $chocoToolsLocation"
+        }
+        else {
+            Write-InstallerLog -Message "ChocolateyToolsLocation user env var already set to expected value: $userChocolateyToolsLocation"
         }
     }
     catch {

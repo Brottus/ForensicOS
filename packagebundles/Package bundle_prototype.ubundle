@@ -98,13 +98,7 @@
       "Name": "Hindsight",
       "Version": "2026.04",
       "Source": "winget",
-      "ManagerName": "winget",
-      "InstallationOptions": {
-        "OverridesNextLevelOpts": true,
-        "CustomInstallLocation": "C:\\tools\\Browser\\obsidianforensics.HindsightGUI",
-        "PostInstallCommand": "powershell -Command \u0022Add-WingetInstallPathToPath -PackageName \u0027obsidianforensics.HindsightGUI\u0027\u0022",
-        "PostUninstallCommand": "powershell -Command \u0022Remove-WingetInstallPathFromPath -PackageName \u0027obsidianforensics.HindsightGUI\u0027\u0022"
-      }
+      "ManagerName": "winget"
     },
     {
       "Id": "pyinstaller-gui",
