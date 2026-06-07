@@ -8,7 +8,7 @@ ForensicOS is a practical, package-driven bootstrap repository for building and 
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![PowerShell 5.1+](https://img.shields.io/badge/PowerShell-5.1%2B-blue)](https://microsoft.com/powershell)
-[![Windows 10+](https://img.shields.io/badge/Windows-10%2B-blue)](https://www.microsoft.com/windows)
+[![Windows 11+](https://img.shields.io/badge/Windows-11%2B-blue)](https://www.microsoft.com/windows)
 
 ## Table of Contents
 
@@ -52,7 +52,7 @@ If this project has helped your DFIR workflow, consider buying the maintainer a 
 
 ForensicOS should be installed on a dedicated lab workstation or virtual machine. Recommended prerequisites:
 
-- Windows 10 or later.
+- Windows 11 or later.
 - PowerShell 5.1 or later.
 - Administrator rights for the installation session.
 - Stable internet connection for package and bundle downloads.
